@@ -1,0 +1,176 @@
+#!/bin/bash
+set -e
+
+declare -a semigroupoids_reverse_deps=( "adjunctions" "algebra" "approximate" "compensated" "compressed" "either" "eq" "folds" "free" "groupoids" "hyperloglog" "kan-extensions" "keys" "lens" "lens-action" "linear" "log-domain" "machines" "monad-products" "pointed" "reducers" "search" "semigroupoid-extras" "streams" "tagged-transformer" "vector-instances" "wl-pprint-extras" "zippers")
+   
+    ## Commented out are reverse dependencies of semigroupoids which are
+    ## not maintained by @ekmett.
+
+    # "active"
+    # "apart"
+    # "bet"
+    # "boombox"
+    # "cabal-helper"
+    # "checkers"
+    # "commodities"
+    # "conceit"
+    # "config-schema"
+    # "data-lens"
+    # "dense"
+    # "difference-monoid"
+    # "digit"
+    # "discrete-space-map"
+    # "dlist-nonempty"
+    # "exitcode"
+    # "foldl-transduce"
+    # "forest"
+    # "glazier"
+    # "glazier-react"
+    # "glirc"
+    # "hedgehog-checkers"
+    # "insert-ordered-containers"
+    # "invertible"
+    # "javaclass"
+    # "lattices"
+    # "meep"
+    # "mono-traversable-instances"
+    # "monoid-extras"
+    # "ms"
+    # "notzero"
+    # "numhask-range"
+    # "optimization"
+    # "papa-implement"
+    # "papa-include"
+    # "papa-prelude-semigroupoids"
+    # "papa-semigroupoids-export"
+    # "papa-semigroupoids-implement"
+    # "pipes-key-value-csv"
+    # "plots"
+    # "prologue"
+    # "q4c12-twofinger"
+    # "quickcheck-classes"
+    # "rebase"
+    # "repl-toolkit"
+    # "resin"
+    # "rose-trees"
+    # "route-planning"
+    # "semi-iso"
+    # "separated"
+    # "servant-client"
+    # "sets"
+    # "sv"
+    # "syntax-printer"
+    # "sys-process"
+    # "tdigest-Chart"
+    # "these"
+    # "tickle"
+    # "transformers-abort"
+    # "validation"
+    # "variation"
+    # "vec"
+    # "wires"
+    # "witness"
+
+#for g in "${semigroupoids_reverse_deps[@]}"
+#do
+#  git clone "git@github.com:chessai/$g"
+#done
+
+## now loop through the above array
+#for g in "${semigroupoids_reverse_deps[@]}"
+#do
+#   cd "$g"
+#   git checkout -b "semigroupoids-breaking-bump" || git checkout "semigroupoids-breaking-bump"
+#   echo "packages: . ../semigroupoids" > cabal.project # point to updated semigroupoids
+#   cd ..
+#done
+
+#for g in "${semigroupoids_reverse_deps[@]}"
+#do
+#   # UPDATE semigroupoids
+#   # sed '/semigroupoids/s/.*/    semigroupoids >= 6.0.0,/' "$g.cabal" | tee "$g.cabal";
+#
+#   cd "$g"
+##   # MODULE NAMES (cabal file only)
+#   find ./*.cabal -type f -exec sed -i -e 's/Bind/Semimonad/g' {} \;
+#   find ./*.cabal -type f -exec sed -i -e 's/Apply/Semiapplicative/g' {} \;
+#   
+#   #the ordering of these matters 
+#   find ./*.cabal -type f -exec sed -i -e 's/Foldable1/Semifoldable/g' {} \;
+##   find ./*.cabal -type f -exec sed -i -e 's/Foldable/Semifoldable/g' {} \;
+#   
+#   #the ordering of these matters 
+#   find ./*.cabal -type f -exec sed -i -e 's/Traversable1/Semitraversable/g' {} \;
+#   find ./*.cabal -type f -exec sed -i -e 's/Traversable/Semitraversable/g' {} \;
+#   
+#   find ./*.cabal -type f -exec sed -i -e 's/Bifoldable/Semibifoldable/g' {} \;
+#   find ./*.cabal -type f -exec sed -i -e 's/Bitraversable/Semibitraversable/g' {} \;
+#   find ./*.cabal -type f -exec sed -i -e 's/BindTrans/SemimonadTrans/g' {} \;
+#   
+#   # TYPECLASS NAMES 
+#   find ./ -type f -exec sed -i -e 's/Bind/Semimonad/g' {} \; 
+#   find ./ -type f -exec sed -i -e 's/Apply/Semiapplicative/g' {} \; 
+#   find ./ -type f -exec sed -i -e 's/Foldable1/Semifoldable/g' {} \; 
+#   find ./ -type f -exec sed -i -e 's/Traversable1/Semitraversable/g' {} \; 
+#   find ./ -type f -exec sed -i -e 's/Bifoldable1/Semibifoldable/g' {} \; 
+#   find ./ -type f -exec sed -i -e 's/Bitraversable1/Semibitraversable/g' {} \; 
+#   find ./ -type f -exec sed -i -e 's/BindTrans/SemimonadTrans/g' {} \;
+#   
+#   # TYPECLASS METHODS
+#   find ./ -type f -exec sed -i -e 's/fold1/semifold/g' {} \;
+#   find ./ -type f -exec sed -i -e 's/foldMap1/semifoldMap/g' {} \;
+#   
+#   find ./ -type f -exec sed -i -e 's/traverse1/semitraverse/g' {} \;
+#   find ./ -type f -exec sed -i -e 's/sequence1/semisequence/g' {} \;
+#   
+#   find ./ -type f -exec sed -i -e 's/bifold1/semibifold/g' {} \;
+#   find ./ -type f -exec sed -i -e 's/bifoldMap1/semibifoldMap/g' {} \;
+#   
+#   find ./ -type f -exec sed -i -e 's/bitraverse1/semibitraverse/g' {} \;
+#   find ./ -type f -exec sed -i -e 's/bisequence1/semibisequence/g' {} \;
+#   
+#   find ./ -type f -exec sed -i -e 's/bisequence1/semibisequence/g' {} \;
+#
+#   find ./ -type f -exec sed -i -e 's/intercalate1/semiintercalate/g' {} \;
+#   find ./ -type f -exec sed -i -e 's/intercalateMap1/semiintercalateMap/g' {} \;
+#   find ./ -type f -exec sed -i -e 's/traverse1_/semitraverse_/g' {} \;
+#   find ./ -type f -exec sed -i -e 's/for1_/semifor_/g' {} \;
+#   find ./ -type f -exec sed -i -e 's/sequenceA1_/sequenceA_/g' {} \;
+#   find ./ -type f -exec sed -i -e 's/foldMapDefault1/semifoldMapDefault/g' {} \;
+#   find ./ -type f -exec sed -i -e 's/asum1/semiasum/g' {} \;
+#  
+#   find ./ -type f -exec sed -i -e 's/foldrM1/semifoldrM/g' {} \;
+#   find ./ -type f -exec sed -i -e 's/foldlM1/semifoldlM/g' {} \;
+    
+#    find ./ -type f -exec sed -i -e 's/Data.Semigroup.Foldable/Data.Semigroup.Semifoldable/g' {} \;
+#    find ./ -type f -exec sed -i -e 's/Data.Semigroup.Traversable/Data.Semigroup.Semitraversable/g' {} \;
+
+    # find ./ -type f -exec sed -i -e 's/Data.Bifunctor.Apply/Data.Bifunctor.Semiapplicative/g' {} \;
+    # find ./ -type f -exec sed -i -e 's/Data.Functor.Apply/Data.Functor.Semiapplicative/g' {} \;
+    # find ./ -type f -exec sed -i -e 's/Data.Functor.Bind/Data.Functor.Semimonad/g' {} \;
+    # find ./ -type f -exec sed -i -e 's/Data.Semigroup.Bifoldable/Data.Semigroup.Semibifoldable/g' {} \;
+    # find ./ -type f -exec sed -i -e 's/Data.Semigroup.Bitraversable/Data.Semigroup/Semibitraversable/g' {} \;
+#    cd ..
+#done
+
+for g in "${semigroupoids_reverse_deps[@]}"
+do
+   # cd "$g"
+   # echo "                   "
+   # echo "BUILDING PACKAGE $g" 
+   # echo "                   "
+   # cp ./../semigroupoids/build .
+   # ./build # check to see if they build with ghc >= 7.6.3
+           # because these packages are @ekmett's, this should be safe
+  
+   echo "                   "
+   echo "PUSHING PACKAGE $g" 
+   echo "                   "
+   
+   git checkout -b "semigroupoids-breaking-bump" || git checkout "semigroupoids-breaking-bump"
+   git add .
+   git commit -m "semigroupoids v6 update"
+   git push -u origin "semigroupoids-breaking-bump"
+   cd ..
+done
+

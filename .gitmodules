@@ -1,0 +1,113 @@
+[submodule "adjunctions"]
+        path = adjunctions
+        url = git@github.com:chessai/adjunctions.git
+[submodule "algebra"]
+        path = algebra
+        url = git@github.com:chessai/algebra.git
+[submodule "approximate"]
+        path = approximate
+        url = git@github.com:chessai/approximate.git
+[submodule "compensated"]
+        path = compensated
+        url = git@github.com:chessai/compensated.git
+[submodule "compressed"]
+        path = compressed
+        url = git@github.com:chessai/compressed.git
+[submodule "either"]
+        path = either
+        url = git@github.com:chessai/either.git
+[submodule "eq"]
+        path = eq
+        url = git@github.com:chessai/eq.git
+[submodule "folds"]
+        path = free
+        url = git@github.com:chessai/free.git
+[submodule "groupoids"]
+        path = groupoids
+        url = git@github.com:chessai/groupoids.git
+[submodule "hyperloglog"]
+        path = hyperloglog
+        url = git@github.com:chessai/hyperloglog.git
+[submodule "kan-extensions"]
+        path = kan-extensions
+        url = git@github.com:chessai/kan-extensions.git
+[submodule "keys"]
+        path = keys
+        url = git@github.com:chessai/keys.git
+[submodule "lens"]
+        path = lens
+        url = git@github.com:chessai/lens.git
+[submodule "lens-action"]
+        path = lens-action
+        url = git@github.com:chessai/lens-action.git
+[submodule "linear"]
+        path = linear
+        url = git@github.com:chessai/linear.git
+[submodule "log-domain"]
+        path = log-domain
+        url = git@github.com:chessai/log-domain.git
+[submodule "machines"]
+        path = machines
+        url = git@github.com:chessai/machines.git
+[submodule "monad-products"]
+        path = monad-products
+        url = git@github.com:chessai/monad-products.git
+[submodule "pointed"]
+        path = pointed
+        url = git@github.com:chessai/pointed.git
+[submodule "reducers"]
+        path = reducers
+        url = git@github.com:chessai/reducers.git
+[submodule "search"]
+        path = search
+        url = git@github.com:chessai/search.git
+[submodule "semigroupoid-extras"]
+        path = semigroupoid-extras
+        url = git@github.com:chessai/semigroupoid-extras.git
+[submodule "semigroupoids"]
+        path = semigroupoids
+        url = git@github.com:chessai/algebra.git
+[submodule "streams"]
+        path = streams
+        url = git@github.com:chessai/streams.git
+[submodule "tagged-transformer"]
+        path = tagged-transformer
+        url = git@github.com:chessai/tagged-transformer.git
+[submodule "vector-instances"]
+        path = vector-instances
+        url = git@github.com:chessai/vector-instances.git
+[submodule "wl-pprint-extras"]
+        path = wl-pprint-extras
+        url = git@github.com:chessai/wl-pprint-extras.git
+[submodule "zippers"]
+        path = zippers
+        url = git@github.com:chessai/zippers.git
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

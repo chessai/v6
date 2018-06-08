@@ -1,9 +1,8 @@
 #!/bin/bash
 set -e
 
-#declare -a semigroupoids_reverse_deps=( "adjunctions" "algebra" "approximate" "compensated" "compressed" "either" "eq" "folds" "free" "groupoids" "hyperloglog" "kan-extensions" "keys" "lens" "lens-action" "linear" "log-domain" "machines" "monad-products" "pointed" "reducers" "search" "semigroupoid-extras" "streams" "tagged-transformer" "vector-instances" "wl-pprint-extras" "zippers")
+declare -a semigroupoids_reverse_deps=( "adjunctions" "algebra" "approximate" "compensated" "compressed" "either" "eq" "folds" "free" "groupoids" "hyperloglog" "kan-extensions" "keys" "lens" "lens-action" "linear" "log-domain" "machines" "monad-products" "pointed" "reducers" "search" "semigroupoid-extras" "streams" "tagged-transformer" "vector-instances" "wl-pprint-extras" "zippers")
    
-declare -a semigroupoids_reverse_deps=( "reducers" "search" "semigroupoid-extras" "streams" "tagged-transformer" "vector-instances" "wl-pprint-extras" "zippers")
     ## Commented out are reverse dependencies of semigroupoids which are
     ## not maintained by @ekmett.
 
@@ -72,33 +71,36 @@ declare -a semigroupoids_reverse_deps=( "reducers" "search" "semigroupoid-extras
     # "wires"
     # "witness"
 
+### clone each as a submodule
 #for g in "${semigroupoids_reverse_deps[@]}"
 #do
 #  git clone "git@github.com:chessai/$g"
 #done
 
-## now loop through the above array
+### create a new branch for this in each submodule
 #for g in "${semigroupoids_reverse_deps[@]}"
 #do
 #   cd "$g"
+#   echo ""
+#   echo "GOING INTO PACKAGE $g"
+#   echo ""
 #   git checkout -b "semigroupoids-breaking-bump" || git checkout "semigroupoids-breaking-bump"
 #   echo "packages: . ../semigroupoids" > cabal.project # point to updated semigroupoids
 #   cd ..
 #done
 
+### rename everything according to new naming scheme (this needs work)
 #for g in "${semigroupoids_reverse_deps[@]}"
 #do
-#   # UPDATE semigroupoids
-#   # sed '/semigroupoids/s/.*/    semigroupoids >= 6.0.0,/' "$g.cabal" | tee "$g.cabal";
 #
 #   cd "$g"
-##   # MODULE NAMES (cabal file only)
+#   # MODULE NAMES (cabal file only)
 #   find ./*.cabal -type f -exec sed -i -e 's/Bind/Semimonad/g' {} \;
 #   find ./*.cabal -type f -exec sed -i -e 's/Apply/Semiapplicative/g' {} \;
 #   
 #   #the ordering of these matters 
 #   find ./*.cabal -type f -exec sed -i -e 's/Foldable1/Semifoldable/g' {} \;
-##   find ./*.cabal -type f -exec sed -i -e 's/Foldable/Semifoldable/g' {} \;
+#   find ./*.cabal -type f -exec sed -i -e 's/Foldable/Semifoldable/g' {} \;
 #   
 #   #the ordering of these matters 
 #   find ./*.cabal -type f -exec sed -i -e 's/Traversable1/Semitraversable/g' {} \;
@@ -146,33 +148,49 @@ declare -a semigroupoids_reverse_deps=( "reducers" "search" "semigroupoid-extras
 #    find ./ -type f -exec sed -i -e 's/Data.Semigroup.Foldable/Data.Semigroup.Semifoldable/g' {} \;
 #    find ./ -type f -exec sed -i -e 's/Data.Semigroup.Traversable/Data.Semigroup.Semitraversable/g' {} \;
 
-    # find ./ -type f -exec sed -i -e 's/Data.Bifunctor.Apply/Data.Bifunctor.Semiapplicative/g' {} \;
-    # find ./ -type f -exec sed -i -e 's/Data.Functor.Apply/Data.Functor.Semiapplicative/g' {} \;
-    # find ./ -type f -exec sed -i -e 's/Data.Functor.Bind/Data.Functor.Semimonad/g' {} \;
-    # find ./ -type f -exec sed -i -e 's/Data.Semigroup.Bifoldable/Data.Semigroup.Semibifoldable/g' {} \;
-    # find ./ -type f -exec sed -i -e 's/Data.Semigroup.Bitraversable/Data.Semigroup/Semibitraversable/g' {} \;
+# find ./ -type f -exec sed -i -e 's/Data.Bifunctor.Apply/Data.Bifunctor.Semiapplicative/g' {} \;
+# find ./ -type f -exec sed -i -e 's/Data.Functor.Apply/Data.Functor.Semiapplicative/g' {} \;
+# find ./ -type f -exec sed -i -e 's/Data.Functor.Bind/Data.Functor.Semimonad/g' {} \;
+# find ./ -type f -exec sed -i -e 's/Data.Semigroup.Bifoldable/Data.Semigroup.Semibifoldable/g' {} \;
+# find ./ -type f -exec sed -i -e 's/Data.Semigroup.Bitraversable/Data.Semigroup/Semibitraversable/g' {} \;
 #    cd ..
 #done
 
 for g in "${semigroupoids_reverse_deps[@]}"
 do
-   # cd "$g"
-   # echo "                   "
-   # echo "BUILDING PACKAGE $g" 
-   # echo "                   "
-   # cp ./../semigroupoids/build .
-   # ./build # check to see if they build with ghc >= 7.6.3
-           # because these packages are @ekmett's, this should be safe
-
    cd "$g"
    echo "                   "
-   echo "PUSHING PACKAGE $g" 
+   echo "BUILDING PACKAGE $g" 
    echo "                   "
    
-   git checkout -b "semigroupoids-breaking-bump" || git checkout "semigroupoids-breaking-bump"
-   git add .
-   git commit -m "semigroupoids v6 update"
-   git push -u origin "semigroupoids-breaking-bump"
+   cp ./../semigroupoids/build .
+   ./build # check to see if they build with ghc >= 7.6.3
+           # because these packages are @ekmett's, this should be safe
+           # N.B.: This currently only tests with GHC 8.4.2, will add
+           # rest in later
+   
+   # echo "                   "
+   # echo "PUSHING PACKAGE $g" 
+   # echo "                   "
+   
+   # git add .
+   # git commit -m "semigroupoids v6 update"
+   # git push -u origin "semigroupoids-breaking-bump"
    cd ..
 done
 
+### push all changes
+# for g in "${semigroupoids_reverse_deps[@]}"
+# do
+#   cd "$g"
+# 
+#   echo ""
+#   echo "PUSHING PACKAGE $g"
+#   echo ""
+# 
+#   git add .
+#   git commit -m "semigroupoids v6 update"
+#   git push -u origin "semigroupoids-breaking-bump"
+#   
+#   cd ..
+# done

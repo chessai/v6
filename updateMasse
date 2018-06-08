@@ -1,8 +1,9 @@
 #!/bin/bash
 set -e
 
-declare -a semigroupoids_reverse_deps=( "adjunctions" "algebra" "approximate" "compensated" "compressed" "either" "eq" "folds" "free" "groupoids" "hyperloglog" "kan-extensions" "keys" "lens" "lens-action" "linear" "log-domain" "machines" "monad-products" "pointed" "reducers" "search" "semigroupoid-extras" "streams" "tagged-transformer" "vector-instances" "wl-pprint-extras" "zippers")
+#declare -a semigroupoids_reverse_deps=( "adjunctions" "algebra" "approximate" "compensated" "compressed" "either" "eq" "folds" "free" "groupoids" "hyperloglog" "kan-extensions" "keys" "lens" "lens-action" "linear" "log-domain" "machines" "monad-products" "pointed" "reducers" "search" "semigroupoid-extras" "streams" "tagged-transformer" "vector-instances" "wl-pprint-extras" "zippers")
    
+declare -a semigroupoids_reverse_deps=( "reducers" "search" "semigroupoid-extras" "streams" "tagged-transformer" "vector-instances" "wl-pprint-extras" "zippers")
     ## Commented out are reverse dependencies of semigroupoids which are
     ## not maintained by @ekmett.
 
@@ -162,7 +163,8 @@ do
    # cp ./../semigroupoids/build .
    # ./build # check to see if they build with ghc >= 7.6.3
            # because these packages are @ekmett's, this should be safe
-  
+
+   cd "$g"
    echo "                   "
    echo "PUSHING PACKAGE $g" 
    echo "                   "
